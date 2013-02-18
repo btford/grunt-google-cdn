@@ -1,0 +1,24 @@
+{
+  "name": "grunt-google-cdn",
+  "version": "0.0.1",
+  "description": "Grunt task for replacing refs to resources on the Google CDN",
+  "main": "Gruntfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.0",
+    "grunt-contrib-jshint": "~0.1.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/btford/grunt-google-cdn"
+  },
+  "keywords": [
+    "grunt",
+    "google",
+    "cdn"
+  ],
+  "author": "Brian Ford",
+  "license": "BSD"
+}
