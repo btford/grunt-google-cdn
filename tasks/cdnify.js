@@ -1,6 +1,7 @@
 'use strict';
 
 var semver = require('semver');
+var hoist = require('../util/hoist.js');
 
 module.exports = function (grunt) {
 
@@ -45,7 +46,6 @@ module.exports = function (grunt) {
       versions[file] = angularVersions;
     });
 
-    // TODO: versions
     angularFiles.forEach(function (item) {
       replacements[item] = {
         from: 'components/' + item + '/' + item + '.js',
@@ -54,17 +54,42 @@ module.exports = function (grunt) {
         }
       };
     });
+    replacements['jquery'] = {
+      from: 'components/jquery/jquery.js',
+      to: function (version) {
+        return '//ajax.googleapis.com/ajax/libs/jquery/' + version + '/jquery.min.js';
+      }
+    };
 
     files.forEach(function (file) {
       var content = file.body;
+
       grunt.util._.each(replacements, function (rep, name) {
         var versionStr = compJson.dependencies[name] || compJson.devDependencies[name];
         if (!versionStr) {
           return;
         }
         var version = semver.maxSatisfying(versions[name], versionStr);
-        content = content.replace(rep.from, rep.to(version));
+        if (version) {
+          content = content.replace(rep.from, rep.to(version));
+        }
       });
+
+      var linesToMove = [];
+      content.split('\n').forEach(function (line) {
+        if (line.indexOf('//ajax.googleapis.com/ajax/libs/') !== -1) {
+          linesToMove.push(line);
+        }
+      });
+
+      try {
+        content = hoist({
+          body: content,
+          marker: '<!-- build:js scripts/scripts.js -->',
+          move: linesToMove
+        });
+        console.log('Hoisted CDN <script> tags in ' + file.path);
+      } catch (e) {}
 
       grunt.file.write(file.path, content);
     });
