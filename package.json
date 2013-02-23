@@ -20,5 +20,8 @@
     "cdn"
   ],
   "author": "Brian Ford",
-  "license": "BSD"
+  "license": "BSD",
+  "dependencies": {
+    "semver": "~1.1.3"
+  }
 }
