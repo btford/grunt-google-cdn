@@ -1,6 +1,6 @@
 {
   "name": "grunt-google-cdn",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Grunt task for replacing refs to resources on the Google CDN",
   "main": "Gruntfile.js",
   "scripts": {
