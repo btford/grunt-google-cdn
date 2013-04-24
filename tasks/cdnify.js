@@ -1,8 +1,8 @@
 'use strict';
 
 var semver = require('semver');
-var fs = require('fs');
-var hoist = require('../util/hoist.js');
+var hoist = require('../util/hoist');
+var bower = require('../util/bower');
 
 
 // map refs from bower -> cdn
@@ -13,26 +13,10 @@ var versions = require('../lib/data.js').versions;
 
 module.exports = function (grunt) {
 
-  function readBowerJson() {
-    var bowerrc = {};
-    var componentsFilename;
-
-    // Read bowerrc first, if present
-    if (fs.existsSync('.bowerrc')) {
-      bowerrc = grunt.file.readJSON('.bowerrc');
-    }
-
-    // If bowerrc defines a 'json' attribute, use that
-    componentsFilename = bowerrc.json || 'component.json';
-    return grunt.file.readJSON(componentsFilename);
-  }
-
   grunt.registerMultiTask('cdnify', 'replace scripts with refs to the Google CDN', function () {
-    var options = this.options();
     // collect files
     var files = grunt.file.expand({ filter: 'isFile' }, this.data.html);
-    var dest = options.dest;
-    var compJson = readBowerJson();
+    var compJson = bower.readJson();
 
     grunt.log
       .writeln('Going through ' + grunt.log.wordlist(files) + ' to update script refs');
