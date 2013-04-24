@@ -23,7 +23,7 @@ module.exports = function (grunt) {
     }
 
     // If bowerrc defines a 'json' attribute, use that
-    componentsFilename = bowerrc.json || 'components.json';
+    componentsFilename = bowerrc.json || 'component.json';
     return grunt.file.readJSON(componentsFilename);
   }
 
