@@ -14,6 +14,6 @@ bower.readJson = function readJson(grunt) {
   }
 
   // If bowerrc defines a 'json' attribute, use that
-  componentsFilename = bowerrc.json || 'component.json';
+  componentsFilename = bowerrc.json || 'bower.json';
   return grunt.file.readJSON(componentsFilename);
 };

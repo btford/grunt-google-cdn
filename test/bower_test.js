@@ -40,8 +40,8 @@ exports.bower = {
     test.equals(result.key, 'value');
 
     test.ok(this.fsMock.existsSync.calledWith('.bowerrc'));
-    // Fall back to component.json
-    test.ok(this.gruntMock.file.readJSON.calledWith('component.json'));
+    // Fall back to bower.json
+    test.ok(this.gruntMock.file.readJSON.calledWith('bower.json'));
 
     test.done();
   },
