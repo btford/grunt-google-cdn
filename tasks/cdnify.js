@@ -48,7 +48,8 @@ module.exports = function (grunt) {
       var content = file.body;
 
       grunt.util._.each(replacements, function (rep, name) {
-        var versionStr = compJson.dependencies[name] || compJson.devDependencies[name];
+        var versionStr = (compJson.dependencies && compJson.dependencies[name]) ||
+          (compJson.devDependencies && compJson.devDependencies[name]);
         if (!versionStr) {
           return;
         }
