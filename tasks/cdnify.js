@@ -33,12 +33,14 @@ module.exports = function (grunt) {
 
       grunt.util._.each(replacements, function (rep, name) {
         var versionStr = compJson.dependencies[name] || compJson.devDependencies[name];
+        var from;
         if (!versionStr) {
           return;
         }
         var version = semver.maxSatisfying(versions[name], versionStr);
         if (version) {
-          content = content.replace(rep.from, rep.to(version));
+          from = bower.joinComponent(rep.from);
+          content = content.replace(from, rep.to(version));
         }
       });
 
