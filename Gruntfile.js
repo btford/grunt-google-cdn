@@ -11,12 +11,17 @@ module.exports = function (grunt) {
         'tasks/*.js',
         'test/**/*.js'
       ]
+    },
+    nodeunit: {
+      tests: ['test/*_test.js']
     }
   });
 
-  grunt.loadNpmTasks('grunt-contrib-jshint');
-
   grunt.loadTasks('tasks');
 
-  grunt.registerTask('default', ['jshint']);
+  grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-contrib-nodeunit');
+
+  grunt.registerTask('test', ['nodeunit']);
+  grunt.registerTask('default', ['jshint', 'test']);
 };
