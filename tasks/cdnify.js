@@ -16,7 +16,7 @@ module.exports = function (grunt) {
   grunt.registerMultiTask('cdnify', 'replace scripts with refs to the Google CDN', function () {
     // collect files
     var files = grunt.file.expand({ filter: 'isFile' }, this.data.html);
-    var compJson = bower.readJson();
+    var compJson = bower.readJson(grunt);
 
     grunt.log
       .writeln('Going through ' + grunt.log.wordlist(files) + ' to update script refs');
@@ -33,12 +33,14 @@ module.exports = function (grunt) {
 
       grunt.util._.each(replacements, function (rep, name) {
         var versionStr = compJson.dependencies[name] || compJson.devDependencies[name];
+        var from;
         if (!versionStr) {
           return;
         }
         var version = semver.maxSatisfying(versions[name], versionStr);
         if (version) {
-          content = content.replace(rep.from, rep.to(version));
+          from = bower.joinComponent(rep.from);
+          content = content.replace(from, rep.to(version));
         }
       });
 
