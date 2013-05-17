@@ -1,19 +1,21 @@
 'use strict';
 
-var fs = require('fs');
-var bower = module.exports;
+var path = require('path');
+var bowerConfig = require('bower').config;
+var bowerUtil = module.exports;
 
 
-bower.readJson = function readJson(grunt) {
-  var bowerrc = {};
-  var componentsFilename;
+bowerUtil.readJson = function readJson(grunt) {
+  return grunt.file.readJSON(bowerConfig.json);
+};
 
-  // Read bowerrc first, if present
-  if (fs.existsSync('.bowerrc')) {
-    bowerrc = grunt.file.readJSON('.bowerrc');
-  }
+bowerUtil.joinComponent = function joinComponent(component) {
+  // Strip the leading path segment from the configured bower components
+  // directory. E.g. app/bower_components -> bower_components
+  var dirBits = bowerConfig.directory.split(path.sep);
+  dirBits.shift();
 
-  // If bowerrc defines a 'json' attribute, use that
-  componentsFilename = bowerrc.json || 'component.json';
-  return grunt.file.readJSON(componentsFilename);
+  // Always join the path with a forward slash, because it's used to replace the
+  // path in HTML.
+  return path.join(dirBits.join('/'), component);
 };
