@@ -1,59 +1,29 @@
 'use strict';
 
 var proxyquire = require('proxyquire');
-var sinon = require('sinon');
 
 exports.bower = {
 
   setUp: function (cb) {
+    this.bowerConfig = {};
 
-    this.gruntMock = {
-      file: {
-        readJSON: sinon.stub()
-      }
-    };
-    this.gruntMock.file.readJSON.returns({key: 'value'});
-
-    this.fsMock = {
-      existsSync: sinon.stub()
+    this.bowerMock = {
+      config: this.bowerConfig
     };
 
-    this.bower = proxyquire('../util/bower', {
-      fs: this.fsMock
+    this.bowerUtil = proxyquire('../util/bower', {
+      bower: this.bowerMock
     });
 
     cb();
   },
 
-  tearDown: function (cb) {
-    this.fsMock.existsSync.reset();
-    this.gruntMock.file.readJSON.reset();
+  joinComponent: function (test) {
+    this.bowerConfig.directory = 'app/bower_components';
 
-    cb();
-  },
+    var result = this.bowerUtil.joinComponent('jquery/jquery-2.0.js');
+    test.equal(result, 'bower_components/jquery/jquery-2.0.js');
 
-  readJsonWithoutBowerrc: function (test) {
-    this.fsMock.existsSync.returns(false);
-
-    // Yay, depdendency injection!
-    var result = this.bower.readJson(this.gruntMock);
-    test.equals(result.key, 'value');
-
-    test.ok(this.fsMock.existsSync.calledWith('.bowerrc'));
-    // Fall back to component.json
-    test.ok(this.gruntMock.file.readJSON.calledWith('component.json'));
-
-    test.done();
-  },
-
-  readJsonWithBowerrc: function (test) {
-    this.fsMock.existsSync.returns(true);
-    this.gruntMock.file.readJSON.withArgs('.bowerrc').returns({json: 'myconf.json'});
-
-    this.bower.readJson(this.gruntMock);
-
-    // Use the provided config file.
-    test.ok(this.gruntMock.file.readJSON.calledWith('myconf.json'));
     test.done();
   }
 };
