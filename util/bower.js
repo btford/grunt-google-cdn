@@ -17,5 +17,5 @@ bowerUtil.joinComponent = function joinComponent(component) {
 
   // Always join the path with a forward slash, because it's used to replace the
   // path in HTML.
-  return path.join(dirBits.join('/'), component);
+  return path.join(dirBits.join('/'), component).replace(/\\/g, '/');
 };
