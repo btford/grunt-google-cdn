@@ -25,6 +25,9 @@
     "google",
     "cdn"
   ],
+  "files": [
+    "tasks/cdnify.js"
+  ],
   "author": "Brian Ford",
   "license": "BSD"
 }
