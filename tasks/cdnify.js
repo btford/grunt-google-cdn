@@ -10,7 +10,7 @@ module.exports = function (grunt) {
   grunt.registerMultiTask('cdnify', 'replace scripts with refs to the Google CDN', function () {
     // collect files
     var files = grunt.file.expand({ filter: 'isFile' }, this.data.html);
-    var compJson = grunt.file.readJSON(bowerConfig.json);
+    var compJson = grunt.file.readJSON(this.data.bowerConfig || bowerConfig.json);
 
     // Strip the leading path segment off, e.g. `app/bower_components` ->
     // `bower_components`
