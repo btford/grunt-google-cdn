@@ -32,6 +32,16 @@ cdnify: {
   }
 }
 ```
+You can specify the bower config location, it may be in a sub folder
+```js
+cdnify: {
+  dist: {
+    bowerConfig: 'client/bower.json'
+    html: ['app/*.html']
+  }
+}
+```
+
 You will need a valid bower.json/component.json file in your project, that has dependencies and a version listed accordingly
 
 ```json
