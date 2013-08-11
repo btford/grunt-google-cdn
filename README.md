@@ -27,6 +27,9 @@ Within your Gruntfile.js file, you need to specify the html directory that conta
 
 ```js
 cdnify: {
+  options: {
+    cdn: 'google'
+  }
   dist: {
     html: ['app/*.html']
   }
@@ -47,6 +50,12 @@ You will need a valid bower.json/component.json file in your project, that has d
 ```
 
 If any updates are found, it will go through the files you specified, updating any references to those scripts.
+
+
+### Options
+
+- `cdn`: defaults to `google`. The CDN you want to use. For options consult the
+  [google-cdn docs](https://github.com/passy/google-cdn#api).
 
 
 ## Release History
