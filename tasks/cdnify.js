@@ -8,6 +8,7 @@ var bowerConfig = require('bower').config;
 module.exports = function (grunt) {
 
   grunt.registerMultiTask('cdnify', 'replace scripts with refs to the Google CDN', function () {
+    var done = this.async();
     // collect files
     var files = grunt.file.expand({ filter: 'isFile' }, this.data.html);
     var compJson = grunt.file.readJSON(bowerConfig.json);
@@ -31,8 +32,12 @@ module.exports = function (grunt) {
     files.forEach(function (file) {
       var content = file.body;
 
-      content = googlecdn(content, compJson, { componentsPath: componentsPath });
-      grunt.file.write(file.path, content);
+      content = googlecdn(content, compJson, { componentsPath: componentsPath }, function(error, newContent) {
+        if (!error) {
+          grunt.file.write(file.path, newContent);
+        }
+        done(error);
+      });
     });
   });
 };
