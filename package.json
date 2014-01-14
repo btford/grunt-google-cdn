@@ -1,6 +1,6 @@
 {
   "name": "grunt-google-cdn",
-  "version": "0.2.4",
+  "version": "0.2.2",
   "description": "Grunt task for replacing refs to resources on the Google CDN",
   "main": "Gruntfile.js",
   "scripts": {
@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "bower": "~0.9.2",
-    "google-cdn": "~0.3.0"
+    "google-cdn": "~0.2.4"
   },
   "repository": {
     "type": "git",
