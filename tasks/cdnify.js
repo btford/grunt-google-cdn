@@ -10,7 +10,10 @@ module.exports = function (grunt) {
   grunt.registerMultiTask('cdnify', 'replace scripts with refs to the Google CDN', function () {
     // collect files
     var files = grunt.file.expand({ filter: 'isFile' }, this.data.html);
-    var compJson = grunt.file.readJSON(bowerConfig.json);
+    var compJson = grunt.file.readJSON('bower.json');
+    var options = this.options({
+      cdn: 'google'
+    });
 
     // Strip the leading path segment off, e.g. `app/bower_components` ->
     // `bower_components`
@@ -28,11 +31,20 @@ module.exports = function (grunt) {
       };
     });
 
-    files.forEach(function (file) {
+    grunt.util.async.forEach(files, function (file, cbInner) {
       var content = file.body;
 
-      content = googlecdn(content, compJson, { componentsPath: componentsPath });
-      grunt.file.write(file.path, content);
-    });
+      content = googlecdn(content, compJson, {
+        componentsPath: componentsPath,
+        cdn: options.cdn
+      }, function (err, content) {
+        if (err) {
+          return cbInner(err);
+        }
+
+        grunt.file.write(file.path, content);
+        cbInner();
+      });
+    }, this.async());
   });
 };

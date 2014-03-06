@@ -13,8 +13,8 @@
     "grunt-contrib-nodeunit": "~0.1.2"
   },
   "dependencies": {
-    "bower": "~0.9.2",
-    "google-cdn": "~0.1.0"
+    "bower": ">=1.0.0",
+    "google-cdn": "~0.2.0"
   },
   "repository": {
     "type": "git",
