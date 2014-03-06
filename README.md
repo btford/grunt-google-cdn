@@ -10,6 +10,8 @@ If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out th
 npm install grunt-google-cdn
 ```
 
+Install CDN data module: `npm install google-cdn-data` (see list of more [data modules](#cdn-data-modules) below)
+
 It manages dependencies using [Bower](http://bower.io/), be sure to have it installed, and a bower.json/component.json in your project.
 
 
@@ -28,7 +30,7 @@ Within your Gruntfile.js file, you need to specify the html directory that conta
 ```js
 cdnify: {
   options: {
-    cdn: 'google'
+    cdn: require('google-cdn-data')
   }
   dist: {
     html: ['app/*.html']
@@ -54,9 +56,25 @@ If any updates are found, it will go through the files you specified, updating a
 
 ### Options
 
-- `cdn`: defaults to `google`. The CDN you want to use. For options consult the
-  [google-cdn docs](https://github.com/passy/google-cdn#api).
+- `cdn`: defaults to `require('google-cdn-data')`. CDN you want to use. Object of the following format:
 
+  ```javascript
+  {
+    jquery: {
+      versions: ['2.0.3', '2.0.2', '2.0.1', '2.0.0'],
+      url: function (version) {
+        return '//my.own.cdn/libs/jquery/' + version + '/jquery.min.js';
+      }
+    }
+  }
+  ```
+For options consult the [google-cdn docs](https://github.com/passy/google-cdn#api).
+  
+## CDN data modules
+
+- [google-cdn-data](https://github.com/shahata/google-cdn-data)
+- [cdnjs-cdn-data](https://github.com/shahata/cdnjs-cdn-data)
+- [jsdelivr-cdn-data](https://github.com/shahata/jsdelivr-cdn-data)
 
 ## Release History
 
