@@ -20,6 +20,10 @@
     "type": "git",
     "url": "git://github.com/btford/grunt-google-cdn"
   },
+  "engines": {
+    "node": ">=0.10.0",
+    "npm": ">=1.4.3"
+  },
   "keywords": [
     "grunt",
     "google",
