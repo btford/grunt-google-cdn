@@ -7,6 +7,7 @@
     "test": "grunt test"
   },
   "devDependencies": {
+    "chalk": "^0.5.1",
     "grunt": "~0.4.0",
     "grunt-contrib-jshint": "~0.4.3",
     "proxyquire": "~0.4.1",
@@ -14,7 +15,7 @@
   },
   "dependencies": {
     "bower": ">=1.0.0",
-    "google-cdn": "~0.6.0"
+    "google-cdn": "~0.7.0"
   },
   "repository": {
     "type": "git",
