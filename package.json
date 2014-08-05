@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "bower": ">=1.0.0",
-    "google-cdn": "~0.4.0"
+    "google-cdn": "~0.6.0"
   },
   "repository": {
     "type": "git",
