@@ -6,10 +6,8 @@ module.exports = function (grunt) {
         jshintrc: '.jshintrc'
       },
       all: [
-        'Gruntfile.js',
-        'lib/*.js',
+        '*.js',
         'tasks/*.js',
-        'test/**/*.js'
       ]
     },
     nodeunit: {
