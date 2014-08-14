@@ -1,19 +1,18 @@
 {
   "name": "grunt-google-cdn",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "Grunt task for replacing refs to resources on the Google CDN",
   "scripts": {
     "test": "grunt test"
   },
   "devDependencies": {
     "grunt": "~0.4.0",
-    "grunt-contrib-jshint": "~0.4.3",
-    "proxyquire": "~0.4.1",
-    "grunt-contrib-nodeunit": "~0.1.2"
+    "grunt-contrib-jshint": "~0.10.0",
+    "grunt-contrib-nodeunit": "~0.4.1"
   },
   "dependencies": {
     "bower": ">=1.0.0",
-    "google-cdn": "~0.4.0"
+    "google-cdn": "~0.6.0"
   },
   "repository": {
     "type": "git",
