@@ -1,6 +1,7 @@
 'use strict';
 
 var path = require('path');
+var eachAsync = require('each-async');
 var googlecdn = require('google-cdn');
 var bowerConfig = require('bower').config;
 var chalk = require('chalk');
@@ -31,7 +32,7 @@ module.exports = function (grunt) {
       };
     });
 
-    grunt.util.async.forEach(files, function (file, cbInner) {
+    eachAsync(files, function (file, index, cbInner) {
       var content = file.body;
 
       content = googlecdn(content, compJson, {
