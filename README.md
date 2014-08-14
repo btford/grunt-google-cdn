@@ -1,4 +1,4 @@
-# grunt-google-cdn [![Build Status](https://travis-ci.org/btford/grunt-google-cdn.png)](https://travis-ci.org/btford/grunt-google-cdn)
+# grunt-google-cdn [![Build Status](https://travis-ci.org/btford/grunt-google-cdn.svg)](https://travis-ci.org/btford/grunt-google-cdn)
  Grunt task for replacing refs to resources on the [Google CDN](https://developers.google.com/speed/libraries/devguide)
 
 ## Getting Started
