@@ -3,7 +3,7 @@
 var path = require('path');
 var googlecdn = require('google-cdn');
 var bowerConfig = require('bower').config;
-
+var chalk = require('chalk');
 
 module.exports = function (grunt) {
 
@@ -37,9 +37,15 @@ module.exports = function (grunt) {
       content = googlecdn(content, compJson, {
         componentsPath: componentsPath,
         cdn: options.cdn
-      }, function (err, content) {
+      }, function (err, content, replacements) {
         if (err) {
           return cbInner(err);
+        }
+
+        if (replacements.length > 0) {
+          replacements.forEach(function (replacement) {
+            grunt.log.writeln(chalk.green('✔ ') + replacement.from + chalk.gray(' changed to ') + replacement.to);
+          });
         }
 
         grunt.file.write(file.path, content);
