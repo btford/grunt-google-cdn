@@ -13,6 +13,7 @@
     "grunt-contrib-nodeunit": "~0.1.2"
   },
   "dependencies": {
+    "chalk": "^0.5.1",
     "bower": ">=1.0.0",
     "google-cdn": "~0.7.0",
     "chalk": "^0.5.1"
