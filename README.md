@@ -56,6 +56,9 @@ If any updates are found, it will go through the files you specified, updating a
 
 ### Options
 
+- `componentsPath`: defaults to the `directory` option in `.bowerrc` file. The path you specify in
+  your script tags to the components directory.
+
 - `cdn`: defaults to `require('google-cdn-data')`. CDN you want to use. Object of the following format:
 
   ```javascript
