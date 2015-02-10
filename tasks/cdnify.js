@@ -15,6 +15,17 @@ module.exports = function (grunt) {
     var options = this.options({
       cdn: 'google'
     });
+    
+    // condense array of CDNs supplied into one source
+    if(grunt.util.kindOf(options.cdn) === 'array'){
+        var opts = {};
+        options.cdn.forEach(function(cdn) {
+            Object.keys(cdn).forEach(function(entry) {
+                opts[entry] = cdn[entry];
+            });
+        });
+        options.cdn = opts;
+    }
 
     // Strip the leading path segment off, e.g. `app/bower_components` ->
     // `bower_components`
