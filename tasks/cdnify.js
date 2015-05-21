@@ -3,7 +3,7 @@
 var path = require('path');
 var eachAsync = require('each-async');
 var googlecdn = require('google-cdn');
-var bowerConfig = require('bower').config;
+var bowerConfig = require('bower-config');
 var chalk = require('chalk');
 
 module.exports = function (grunt) {
@@ -18,7 +18,8 @@ module.exports = function (grunt) {
 
     // Strip the leading path segment off, e.g. `app/bower_components` ->
     // `bower_components`
-    var bowerDirBits = bowerConfig.directory.split(path.sep);
+    var config = bowerConfig.create().load()._config;
+    var bowerDirBits = config.directory.split(path.sep);
     bowerDirBits.shift();
     var componentsPath = bowerDirBits.join(path.sep);
 
