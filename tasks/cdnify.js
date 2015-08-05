@@ -36,7 +36,7 @@ module.exports = function (grunt) {
       var content = file.body;
 
       content = googlecdn(content, compJson, {
-        componentsPath: componentsPath,
+        componentsPath: options.componentsPath || componentsPath,
         cdn: options.cdn
       }, function (err, content, replacements) {
         if (err) {
