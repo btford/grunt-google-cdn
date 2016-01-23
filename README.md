@@ -69,7 +69,7 @@ If any updates are found, it will go through the files you specified, updating a
   }
   ```
 For options consult the [google-cdn docs](https://github.com/passy/google-cdn#api).
-  
+
 ## CDN data modules
 
 - [google-cdn-data](https://github.com/shahata/google-cdn-data)
@@ -78,6 +78,8 @@ For options consult the [google-cdn docs](https://github.com/passy/google-cdn#ap
 
 ## Release History
 
+ * 2016-01-23   v0.5.0   updated packages
+ * ...
  * 2013-04-24   v0.1.4   removed the extra s in component.json
  * 2013-04-22   v0.1.3   Made 'components.json' configurable via bowerrc, added unstable AngularJS and jQuery 2.0.0
  * 2013-04-07   v0.1.2   update available AngularJS versions, add .jshintrc
