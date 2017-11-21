@@ -9,6 +9,9 @@ var chalk = require('chalk');
 module.exports = function (grunt) {
 
   grunt.registerMultiTask('cdnify', 'Replace scripts with refs to the Google CDN', function () {
+    if (this.data.html === undefined) {
+      throw new TypeError('Expected `cdnify.<target>.html` to be array or string.');
+    }
     // collect files
     var files = grunt.file.expand({ filter: 'isFile' }, this.data.html);
     var compJson = grunt.file.readJSON('bower.json');
